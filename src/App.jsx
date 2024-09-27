@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import moment from 'moment'
-
+import verificarData from './util'
 function App() {
   const [moedas, setMoedas] = useState([])
   const [cotacao, setCotacao] = useState(0)
@@ -25,7 +25,8 @@ function App() {
   }
 
   const getCotacao = (moeda) => {
-    const dataAtual = moment().subtract(1, 'days').format('MM-DD-YYYY');
+    const dataAtual = moment(verificarData()).format('MM-DD-YYYY');
+    console.log(dataAtual);
     
     axios.get(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='${moeda}'&@dataCotacao='${dataAtual}'&$top=100&$format=json`)
       .then((response) => {
