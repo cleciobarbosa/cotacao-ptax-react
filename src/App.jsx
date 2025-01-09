@@ -44,14 +44,17 @@ function App() {
   return (
     <>
       <div>
-        <div >
-          <label>Selecione uma moeda</label>
-          <select onChange={handleSelectChange}>
+        <div className='sm:col-span-3'>
+          <label htmlFor='moeda' className='block text-sm/6 font -medium text-gray-900'>Selecione uma moeda</label>
+          <div className='mt-w grid grid-cols-1'>
+
+          <select  onChange={handleSelectChange}>
             {moedas.map(moeda => (
               <option key={moeda.simbolo} value={moeda.simbolo}>{moeda.simbolo} - {moeda.nomeFormatado}</option>)
             )}
             <option value='Selecione uma moeda'>Selecione uma moeda</option>
           </select>
+          </div>
         </div>
         {cotacao > 0 ?
           <div id="divCotacao">
